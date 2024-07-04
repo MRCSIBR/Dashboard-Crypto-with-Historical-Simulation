@@ -1,5 +1,5 @@
 
-# Panel de Control de Portafolio de Criptomonedas con Simulación Histórica
+# Dashboard para Portafolio Cripto con Simulación Histórica
 
 ## Descripción General
 
