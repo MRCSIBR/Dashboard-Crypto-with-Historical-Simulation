@@ -1,72 +1,72 @@
-# Dashboard-Crypto-with-Historical-Simulation
 
-# Crypto Portfolio Dashboard with Historical Simulation
+# Dashboard para Portafolio Cripto con Simulación Histórica
 
-## Overview
+## Descripción General
 
-This Streamlit-based web application provides a comprehensive dashboard for tracking and analyzing a cryptocurrency portfolio. It allows users to input their cryptocurrency holdings, visualize the portfolio's historical performance, and view current portfolio statistics.
+Esta `webapp` basada en Streamlit proporciona un panel de control completo para el seguimiento y análisis de un portafolio de criptomonedas. Permite a los usuarios introducir sus tenencias de criptomonedas, visualizar el rendimiento histórico del portafolio y ver las estadísticas actuales del mismo. Podemos realizar una simulacion historica y comparar la evolucion de nuestra inversion en el tiempo.
 
-## Features
+## Características
 
-- **Multiple Cryptocurrency Support**: Track BTC, XRP, ETH, DOGE, and USDT.
-- **Custom Holdings Input**: Enter the quantity of each cryptocurrency in your portfolio.
-- **Historical Simulation**: View your portfolio's performance from a selected start date (default: January 1, 2021) to the present.
-- **Interactive Chart**: Visualize your portfolio's total value over time with an interactive line chart.
-- **Current Portfolio Summary**: See a breakdown of your current holdings, including current prices and percentages.
-- **Portfolio Statistics**: View key statistics such as starting value, current value, total return, highest value, and lowest value.
+- **Soporte para Múltiples Criptomonedas**: Seguimiento de BTC, XRP, ETH, DOGE y USDT.
+- **Entrada de Tenencias Personalizada**: Introduce la cantidad de cada criptomoneda en tu portafolio.
+- **Simulación Histórica**: Visualiza el rendimiento de tu portafolio desde una fecha de inicio seleccionada (por defecto: 1 de enero de 2021) hasta el presente.
+- **Gráfico Interactivo**: Visualiza el valor total de tu portafolio a lo largo del tiempo con un gráfico de líneas interactivo.
+- **Resumen del Portafolio Actual**: Observa un desglose de tus tenencias actuales, incluyendo precios actuales y porcentajes.
+- **Estadísticas del Portafolio**: Visualiza estadísticas clave como el valor inicial, valor actual, rendimiento total, valor más alto y valor más bajo.
 
-## Installation
+## Instalación
 
-1. Clone this repository:
+1. Clona este repositorio:
    ```
-   git clone https://github.com/yourusername/crypto-portfolio-dashboard.git
-   cd crypto-portfolio-dashboard
+   git clone https://github.com/MRCSIBR/Dashboard-Crypto-with-Historical-Simulation.git
+   cd panel-control-criptomonedas
    ```
 
-2. Create a virtual environment (optional but recommended):
+2. Crea un entorno virtual (opcional pero recomendado):
    ```
    python -m venv venv
-   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   source venv/bin/activate  # En Windows, usa `venv\Scripts\activate`
    ```
 
-3. Install the required packages:
+3. Instala los paquetes requeridos:
    ```
    pip install -r requirements.txt
    ```
 
-## Usage
+## Uso
 
-1. Run the Streamlit app:
+1. Ejecuta la aplicación Streamlit:
    ```
-   streamlit run crypto_dashboard.py
+   streamlit run panel_control_criptomonedas.py
    ```
 
-2. Open your web browser and go to the URL displayed in the terminal (usually `http://localhost:8501`).
+2. Abre tu navegador web y ve a la URL mostrada en la terminal (normalmente `http://localhost:8501`).
 
-3. Use the sidebar to input your cryptocurrency holdings and select a start date for the historical simulation.
+3. Usa la barra lateral para introducir tus tenencias de criptomonedas y seleccionar una fecha de inicio para la simulación histórica.
 
-4. The main page will display:
-   - A chart showing your portfolio's historical value
-   - A summary of your current portfolio
-   - Key statistics about your portfolio's performance
+4. La página principal mostrará:
+   - Un gráfico que muestra el valor histórico de tu portafolio
+   - Un resumen de tu portafolio actual
+   - Estadísticas clave sobre el rendimiento de tu portafolio
 
-## Data Source
+## Fuente de Datos
 
-This dashboard uses Yahoo Finance (via the `yfinance` library) to fetch historical cryptocurrency price data.
+Este panel de control utiliza Yahoo Finance (a través de la biblioteca `yfinance`) para obtener datos históricos de precios de criptomonedas.
 
-## Customization
+## Personalización
 
-You can easily modify the `CURRENCIES` and `YAHOO_SYMBOLS` lists in the script to add or remove cryptocurrencies from the dashboard.
+Puedes modificar fácilmente las listas `CURRENCIES` y `YAHOO_SYMBOLS` en el script para añadir o eliminar criptomonedas del panel de control.
 
-## Limitations
+## Limitaciones
 
-- The accuracy of the simulation depends on the availability and accuracy of historical data from Yahoo Finance.
-- The dashboard does not account for transaction fees, taxes, or other costs associated with cryptocurrency trading.
+- La precisión de la simulación depende de la disponibilidad y exactitud de los datos históricos de Yahoo Finance.
+- El panel de control no tiene en cuenta las comisiones de transacción, impuestos u otros costos asociados con el trading de criptomonedas.
 
-## Contributing
+## Contribuciones
 
-Contributions to improve the dashboard are welcome! Please feel free to submit issues or pull requests.
+¡Las contribuciones para mejorar el panel de control son bienvenidas! Por favor, no dudes en enviar issues o pull requests.
 
-## License
+## Licencia
 
-This project is open-source and available under the MIT License.
+Este proyecto es de código abierto y está disponible bajo la Licencia MIT.
+
