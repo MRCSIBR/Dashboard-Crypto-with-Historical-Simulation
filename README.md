@@ -18,7 +18,7 @@ Esta `webapp` basada en Streamlit proporciona un panel de control completo para 
 
 1. Clona este repositorio:
    ```
-   git clone https://github.com/tuusuario/panel-control-criptomonedas.git
+   git clone https://github.com/MRCSIBR/Dashboard-Crypto-with-Historical-Simulation.git
    cd panel-control-criptomonedas
    ```
 
