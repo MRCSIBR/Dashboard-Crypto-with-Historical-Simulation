@@ -5,7 +5,41 @@ import plotly.express as px
 import yfinance as yf
 from datetime import datetime, timedelta
 
-# Github: MRCSIBR
+# Fecha: Saturday, 6 Julio 2024
+
+# Configuración de tema de Streamlit para imitar los colores de Binance
+st.set_page_config(page_title="Crypto Dashboard", page_icon="📊", layout="centered")
+
+# Colores de Binance
+BINANCE_YELLOW = "#F0B90B"
+BINANCE_BLACK = "#1E2026"
+BINANCE_DARK_GRAY = "#2B3139"
+BINANCE_LIGHT_GRAY = "#474D57"
+POSITIVE_GREEN = "#0ECB81"
+NEGATIVE_RED = "#F6465D"
+
+# Aplicar estilos CSS personalizados
+st.markdown("""
+    <style>
+    .stApp {
+    background-color: black;
+    }
+    .reportview-container {
+        background-color: #1E2026;
+        color: #FFFFFF;
+    }
+    .sidebar .sidebar-content {
+        background-color: #2B3139;
+    }
+    .Widget>label {
+        color: #F0B90B !important;
+    }
+    .stProgress .st-bo {
+        background-color: #F0B90B;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 # Lista de criptomonedas (incluyendo USDT)
 MONEDAS = ["BTC", "XRP", "ETH", "DOGE", "USDT"]
 
@@ -24,7 +58,7 @@ def obtener_datos_historicos(simbolos, fecha_inicio):
     return datos['Close']
 
 def main():
-    st.title("Cartera de Criptomonedas con Simulación Histórica")
+    st.title("Panel de Control de Cartera de Criptomonedas")
 
     # Añadir párrafo explicativo de uso
     st.markdown("""
@@ -37,16 +71,9 @@ def main():
        - Gráfico de líneas que muestra el rendimiento individual de BTC, ETH y DOGE.
        - Tabla de resumen con detalles actuales de su cartera.
        - Estadísticas clave de rendimiento de la cartera.
-    
-    4. Ejemplo de fecha: 12 de marzo de 2020: "Jueves Negro" de las criptomonedas
-
-        El precio de Bitcoin cayó más del **50% en un solo día***, Bitcoin cotizaba a menos de $4,000.
-        Este crash coincidió con una caída en los mercados tradicionales debido a las preocupaciones por la pandemia de COVID-19.
-    
-    Actualice sus tenencias en cualquier momento para ver cómo cambian los resultados.
-    
+       - Actualice sus tenencias en cualquier momento para ver cómo cambian los resultados.
     """)
-    
+
     # Entrada de usuario para tenencias y fecha de inicio
     st.sidebar.header("Ingrese sus Tenencias y Fecha de Inicio")
     tenencias = {}
@@ -67,30 +94,43 @@ def main():
     # Crear gráfico circular de la asignación actual de la cartera
     asignacion_actual = valor_cartera.iloc[-1][:-1]  # Excluir 'Total'
     fig_circular = px.pie(values=asignacion_actual, names=asignacion_actual.index, title="Asignación Actual de la Cartera")
+    fig_circular.update_traces(marker=dict(colors=[BINANCE_YELLOW, BINANCE_LIGHT_GRAY, BINANCE_DARK_GRAY, "#A3A6B4", "#7D7F87"]))
+    fig_circular.update_layout(
+        paper_bgcolor=BINANCE_BLACK,
+        plot_bgcolor=BINANCE_BLACK,
+        font_color="white"
+    )
     st.plotly_chart(fig_circular)
 
     # Crear gráfico de líneas del valor total de la cartera a lo largo del tiempo
     fig_total = go.Figure()
     fig_total.add_trace(go.Scatter(x=valor_cartera.index, y=valor_cartera['Total'],
-                                   mode='lines', name='Valor Total de la Cartera'))
+                                   mode='lines', name='Valor Total de la Cartera', line=dict(color=BINANCE_YELLOW)))
     fig_total.update_layout(
         title='Valor Histórico Total de la Cartera',
         xaxis_title='Fecha',
         yaxis_title='Valor de la Cartera (USD)',
-        height=400
+        height=400,
+        paper_bgcolor=BINANCE_BLACK,
+        plot_bgcolor=BINANCE_BLACK,
+        font_color="white"
     )
     st.plotly_chart(fig_total)
 
     # Crear gráfico de líneas de los valores individuales de las criptomonedas a lo largo del tiempo
     fig_individual = go.Figure()
-    for moneda in ["BTC", "ETH", "DOGE"]:  # Monedas de ejemplo
+    colors = [BINANCE_YELLOW, BINANCE_LIGHT_GRAY, BINANCE_DARK_GRAY]
+    for i, moneda in enumerate(["BTC", "ETH", "DOGE"]):  # Monedas de ejemplo
         fig_individual.add_trace(go.Scatter(x=valor_cartera.index, y=valor_cartera[moneda],
-                                            mode='lines', name=moneda))
+                                            mode='lines', name=moneda, line=dict(color=colors[i])))
     fig_individual.update_layout(
         title='Valores Históricos de Criptomonedas Individuales',
         xaxis_title='Fecha',
         yaxis_title='Valor (USD)',
-        height=400
+        height=400,
+        paper_bgcolor=BINANCE_BLACK,
+        plot_bgcolor=BINANCE_BLACK,
+        font_color="white"
     )
     st.plotly_chart(fig_individual)
 
@@ -112,15 +152,39 @@ def main():
         'Cantidad': '{:.6f}',
         'Valor Actual': '${:.2f}',
         'Porcentaje': '{:.2f}%'
-    }))
-
+    }).set_properties(**{'background-color': BINANCE_DARK_GRAY,
+                         'color': 'white',
+                         'border-color': BINANCE_LIGHT_GRAY}))
+    
     # Mostrar estadísticas de la cartera
     st.header("Estadísticas de la Cartera")
-    st.write(f"Valor Inicial: ${valor_cartera['Total'].iloc[0]:.2f}")
-    st.write(f"Valor Actual: ${valor_cartera['Total'].iloc[-1]:.2f}")
-    st.write(f"Retorno Total: {((valor_cartera['Total'].iloc[-1] / valor_cartera['Total'].iloc[0]) - 1) * 100:.2f}%")
-    st.write(f"Valor Máximo: ${valor_cartera['Total'].max():.2f}")
-    st.write(f"Valor Mínimo: ${valor_cartera['Total'].min():.2f}")
-
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.metric("Valor Inicial", f"${valor_cartera['Total'].iloc[0]:.0f}")
+        st.metric("Valor Máximo", f"${valor_cartera['Total'].max():.2f}")
+    
+    with col2:
+        valor_actual = valor_cartera['Total'].iloc[-1]
+        valor_inicial = valor_cartera['Total'].iloc[0]
+        delta_valor = valor_actual - valor_inicial
+        delta_porcentaje = (delta_valor / valor_inicial) * 100
+        st.metric(
+            "Valor Actual",
+            f"${valor_actual:.0f}",
+           
+            delta_color="normal"
+        )
+        st.metric("Valor Mínimo", f"${valor_cartera['Total'].min():.2f}")
+    
+    with col3:
+        retorno_total = ((valor_cartera['Total'].iloc[-1] / valor_cartera['Total'].iloc[0]) - 1) * 100
+        st.metric(
+            "Retorno Total",
+            f"{retorno_total:.2f}%",
+            delta=f"{retorno_total:+.2f}%",
+            delta_color="normal"
+        )
+    
 if __name__ == "__main__":
     main()
