@@ -5,7 +5,7 @@ import plotly.express as px
 import yfinance as yf
 from datetime import datetime, timedelta
 
-# Fecha: Saturday, 6 Julio 2024
+# Fecha: Sabado, 6 Julio 2024
 
 # Configuración de tema de Streamlit para imitar los colores de Binance
 st.set_page_config(page_title="Crypto Dashboard", page_icon="📊", layout="centered")
@@ -40,8 +40,8 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# Lista de criptomonedas (incluyendo USDT)
-MONEDAS = ["BTC", "XRP", "ETH", "DOGE", "USDT"]
+# Lista de criptomonedas (incluyendo USDT y SOL)
+MONEDAS = ["BTC", "XRP", "ETH", "DOGE", "USDT", "SOL"]
 
 # Mapeo de criptomonedas a sus símbolos en Yahoo Finance
 SIMBOLOS_YAHOO = {
@@ -49,7 +49,8 @@ SIMBOLOS_YAHOO = {
     "XRP": "XRP-USD",
     "ETH": "ETH-USD",
     "DOGE": "DOGE-USD",
-    "USDT": "USDT-USD"
+    "USDT": "USDT-USD",
+    "SOL": "SOL-USD"
 }
 
 def obtener_datos_historicos(simbolos, fecha_inicio):
@@ -68,7 +69,7 @@ def main():
     3. Explore los gráficos y estadísticas generados automáticamente:
        - Gráfico circular que muestra la distribución actual de su cartera.
        - Gráfico de líneas del valor total de su cartera a lo largo del tiempo.
-       - Gráfico de líneas que muestra el rendimiento individual de BTC, ETH y DOGE.
+       - Gráfico de líneas que muestra el rendimiento individual de BTC, ETH, DOGE y SOL.
        - Tabla de resumen con detalles actuales de su cartera.
        - Estadísticas clave de rendimiento de la cartera.
        - Actualice sus tenencias en cualquier momento para ver cómo cambian los resultados.
@@ -92,13 +93,32 @@ def main():
     valor_cartera['Total'] = valor_cartera.sum(axis=1)
 
     # Crear gráfico circular de la asignación actual de la cartera
-    asignacion_actual = valor_cartera.iloc[-1][:-1]  # Excluir 'Total'
-    fig_circular = px.pie(values=asignacion_actual, names=asignacion_actual.index, title="Asignación Actual de la Cartera")
-    fig_circular.update_traces(marker=dict(colors=[BINANCE_YELLOW, BINANCE_LIGHT_GRAY, BINANCE_DARK_GRAY, "#A3A6B4", "#7D7F87"]))
+    asignacion_actual = valor_cartera.iloc[-1][:-1]  # Exclude 'Total'
+    
+    # Filtrar valores 0 
+    asignacion_filtrada = asignacion_actual[asignacion_actual > 0.01]  # Adjust threshold as needed
+    fig_circular = px.pie(
+        values=asignacion_filtrada,
+        names=asignacion_filtrada.index,
+        title="Asignación Actual de la Cartera"
+    )
+    fig_circular.update_traces(
+        textposition='inside',
+        textinfo='percent+label',
+        marker=dict(colors=[BINANCE_YELLOW, BINANCE_LIGHT_GRAY, BINANCE_DARK_GRAY, "#A3A6B4", "#7D7F87", "#6750A4"]),
+        showlegend=True
+    )
     fig_circular.update_layout(
         paper_bgcolor=BINANCE_BLACK,
         plot_bgcolor=BINANCE_BLACK,
-        font_color="white"
+        font_color="white",
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        )
     )
     st.plotly_chart(fig_circular)
 
@@ -119,8 +139,8 @@ def main():
 
     # Crear gráfico de líneas de los valores individuales de las criptomonedas a lo largo del tiempo
     fig_individual = go.Figure()
-    colors = [BINANCE_YELLOW, BINANCE_LIGHT_GRAY, BINANCE_DARK_GRAY]
-    for i, moneda in enumerate(["BTC", "ETH", "DOGE"]):  # Monedas de ejemplo
+    colors = [BINANCE_YELLOW, BINANCE_LIGHT_GRAY, BINANCE_DARK_GRAY, "#6750A4"]
+    for i, moneda in enumerate(["BTC", "ETH", "DOGE", "SOL"]):  # Monedas de ejemplo, incluyendo SOL
         fig_individual.add_trace(go.Scatter(x=valor_cartera.index, y=valor_cartera[moneda],
                                             mode='lines', name=moneda, line=dict(color=colors[i])))
     fig_individual.update_layout(
@@ -172,7 +192,7 @@ def main():
         st.metric(
             "Valor Actual",
             f"${valor_actual:.0f}",
-           
+            delta=f"{delta_porcentaje:+.2f}%",
             delta_color="normal"
         )
         st.metric("Valor Mínimo", f"${valor_cartera['Total'].min():.2f}")
@@ -188,3 +208,6 @@ def main():
     
 if __name__ == "__main__":
     main()
+    
+# Log de Cambios: 8.7.2024 - Agregado Solana
+#                          - Corregido texto de grafico torta    
