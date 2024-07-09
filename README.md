@@ -64,6 +64,7 @@ Este panel de control utiliza Yahoo Finance (a través de la biblioteca `yfinanc
 
 ## Changelog: 
 
-8.7.2024 - Agregado Solana
-9.7.2024 - Corregido texto de grafico torta    
+8.7.2024
+- Agregado Solana
+- Correccion de bug en el texto de grafico torta    
 
