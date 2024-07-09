@@ -1,6 +1,8 @@
 
 # Dashboard para Portafolio Cripto con Simulación Histórica
 
+![Preview](https://github.com/MRCSIBR/Dashboard-Crypto-with-Historical-Simulation/blob/main/Dashboard_v2.jpg)
+
 ## Descripción General
 
 Esta `webapp` basada en Streamlit proporciona un panel de control completo para el seguimiento y análisis de un portafolio de criptomonedas. Permite a los usuarios introducir sus tenencias de criptomonedas, visualizar el rendimiento histórico del portafolio y ver las estadísticas actuales del mismo.    
@@ -55,14 +57,6 @@ Podemos realizar una simulacion historica y comparar la evolucion de nuestra inv
 
 Este panel de control utiliza Yahoo Finance (a través de la biblioteca `yfinance`) para obtener datos históricos de precios de criptomonedas.
 
-## Personalización
-
-Puedes modificar fácilmente las listas `CURRENCIES` y `YAHOO_SYMBOLS` en el script para añadir o eliminar criptomonedas del panel de control.
-
-## Limitaciones
-
-- La precisión de la simulación depende de la disponibilidad y exactitud de los datos históricos de Yahoo Finance.
-- El panel de control no tiene en cuenta las comisiones de transacción, impuestos u otros costos asociados con el trading de criptomonedas.
 
 ## Contribuciones
 
