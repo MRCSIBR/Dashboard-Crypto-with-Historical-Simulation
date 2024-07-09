@@ -62,7 +62,8 @@ Este panel de control utiliza Yahoo Finance (a través de la biblioteca `yfinanc
 
 ¡Las contribuciones para mejorar el panel de control son bienvenidas! Por favor, no dudes en enviar issues o pull requests.
 
-## Licencia
+## Changelog: 
 
-Este proyecto es de código abierto y está disponible bajo la Licencia MIT.
+8.7.2024 - Agregado Solana
+9.7.2024 - Corregido texto de grafico torta    
 
