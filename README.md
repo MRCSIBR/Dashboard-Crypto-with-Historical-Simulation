@@ -66,5 +66,10 @@ Este panel de control utiliza Yahoo Finance (a través de la biblioteca `yfinanc
 
 8.7.2024
 - Agregado Solana
-- Correccion de bug en el texto de grafico torta    
+- Correccion de bug en el texto de grafico torta
+
+## To-Do
+
+- Solucionar calculo de planilla de tenencias
+- Guardado a csv de diversificacion
 
