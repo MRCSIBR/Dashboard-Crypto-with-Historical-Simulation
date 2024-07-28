@@ -41,7 +41,7 @@ Podemos realizar una simulacion historica y comparar la evolucion de nuestra inv
 
 1. Ejecuta la aplicación Streamlit:
    ```
-   streamlit run panel_control_criptomonedas.py
+   streamlit run main.py
    ```
 
 2. Abre tu navegador web y ve a la URL mostrada en la terminal (normalmente `http://localhost:8501`).
