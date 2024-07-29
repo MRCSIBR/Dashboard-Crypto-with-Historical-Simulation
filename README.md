@@ -71,5 +71,5 @@ Este panel de control utiliza Yahoo Finance (a través de la biblioteca `yfinanc
 ## To-Do
 
 - Solucionar calculo de planilla de tenencias
-- Guardado a csv de diversificacion
+- Guardar diversificacion a .csv
 
