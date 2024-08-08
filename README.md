@@ -66,7 +66,5 @@ Puedes modificar fácilmente las listas `CURRENCIES` y `YAHOO_SYMBOLS` en el scr
 
 ¡Las contribuciones para mejorar el panel de control son bienvenidas! Por favor, no dudes en enviar issues o pull requests.
 
-## Licencia
 
-Este proyecto es de código abierto y está disponible bajo la Licencia MIT.
 
