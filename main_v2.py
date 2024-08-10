@@ -6,7 +6,7 @@ import yfinance as yf
 from datetime import datetime, timedelta
 
 # Fecha: Sabado, 6 Julio 2024
-# update:           10.8.2024
+# Update:           10.8.2024
 
 # Configuración de tema de Streamlit para imitar los colores de Binance
 st.set_page_config(page_title="Crypto Dashboard", page_icon="📊", layout="centered")
