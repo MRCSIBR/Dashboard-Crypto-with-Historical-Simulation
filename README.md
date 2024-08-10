@@ -68,6 +68,12 @@ Este panel de control utiliza Yahoo Finance (a través de la biblioteca `yfinanc
 - Agregado Solana
 - Correccion de bug en el texto de grafico torta
 
+10.8.2024
+
+- Error Handling para error de desconexion
+- Cantidad inicial de monedas en dataframe
+- Selector de escala log y linear para chart de valor Total
+
 ## To-Do
 
 - Solucionar calculo de planilla de tenencias
