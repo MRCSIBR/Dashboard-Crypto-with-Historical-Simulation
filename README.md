@@ -7,7 +7,7 @@
 
 Esta `webapp` basada en Streamlit proporciona un panel de control completo para el seguimiento y análisis de un portafolio de criptomonedas. Permite a los usuarios introducir sus tenencias de criptomonedas, visualizar el rendimiento histórico del portafolio y ver las estadísticas actuales del mismo.    
 
-Podemos realizar una simulacion historica y comparar la evolucion de nuestra inversión en el tiempo.
+La idea principal es comparar la evolucion al `diversificar` la inversion incial y comparar diferentes resultados.
 
 ## Características
 
