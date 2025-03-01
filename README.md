@@ -55,7 +55,7 @@ La idea principal es comparar la evolución al `diversificar` la inversión inic
 
 ## Fuente de Datos
 
-Este panel de control utiliza Yahoo Finance (a través de la biblioteca `yfinance`) para obtener datos históricos de precios de criptomonedas.
+Este panel de control utiliza  la biblioteca `yfinance` para obtener datos históricos de precios de criptomonedas.
 
 
 ## Contribuciones
