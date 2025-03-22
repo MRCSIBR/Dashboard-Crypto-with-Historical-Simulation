@@ -64,11 +64,11 @@ Este panel de control utiliza  la biblioteca `yfinance` para obtener datos hist√
 
 ## Changelog: 
 
-8.7.2024
+[8.7.2024]
 - Agregado Solana
 - Correccion de bug en el texto de grafico torta
 
-10.8.2024
+[10.8.2024]
 
 - Error Handling para error de desconexion
 - Cantidad inicial de monedas en dataframe
